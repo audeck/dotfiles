@@ -1,5 +1,0 @@
-- In-line virtual text for top LSP suggestion
-- LIVELIER TEXT COLORS!
-- Status line & winbar colors! (Lualine)
-- ???
-- Keep everything documented using `which-key`
