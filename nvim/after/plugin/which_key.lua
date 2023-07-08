@@ -33,12 +33,6 @@ if enabled then
 
     wk.register({
         ['<leader>'] = {
-            p = {
-                name = "Project",
-                f = { "Find file" },
-                s = { "Find string" },
-                v = { "View files" },
-            },
             d = {
                 name = "Diagnostics",
                 s = { "Show current" },
