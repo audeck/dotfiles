@@ -1,107 +1,109 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
 -- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+vim.cmd([[packadd packer.nvim]])
 
-return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use('wbthomason/packer.nvim')
+return require("packer").startup(function(use)
+	-- Packer can manage itself
+	use("wbthomason/packer.nvim")
 
-    use({
-        'nvim-telescope/telescope.nvim', tag = '0.1.1',
-        -- or                          , branch = '0.1.x',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    })
+	use({
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.1",
+		-- or                          , branch = '0.1.x',
+		requires = { { "nvim-lua/plenary.nvim" } },
+	})
 
-    -- Color themes
-    use('jacoborus/tender.vim')
-    use('savq/melange-nvim')
-    use('catppuccin/nvim')
+	-- Color themes
+	use("jacoborus/tender.vim")
+	use("savq/melange-nvim")
+	use("catppuccin/nvim")
 
-    -- Transparency
-    use("xiyaowong/transparent.nvim")
+	-- Transparency
+	use("xiyaowong/transparent.nvim")
 
-    use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-    use('nvim-treesitter/playground')
-    use('mbbill/undotree')
-    use('tpope/vim-fugitive')
+	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
+	use("nvim-treesitter/playground")
+	use("mbbill/undotree")
+	use("tpope/vim-fugitive")
 
-    -- LSP
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
-        requires = {
-            -- LSP Support
-            {
-                'neovim/nvim-lspconfig',
-                requires = 'catppuccin/nvim',
-            },
-            {
-                'williamboman/mason.nvim',
-                run = function()
-                    pcall(vim.cmd, 'MasonUpdate')
-                end,
-            },
-            {'williamboman/mason-lspconfig.nvim'}, -- Optional
+	-- Formatter
+	use("mhartington/formatter.nvim")
 
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},     -- Required
-            {'hrsh7th/cmp-nvim-lsp'}, -- Required
-            {'L3MON4D3/LuaSnip'},     -- Required
+	-- LSP
+	use({
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v2.x",
+		requires = {
+			-- LSP Support
+			{
+				"neovim/nvim-lspconfig",
+				requires = "catppuccin/nvim",
+			},
+			{
+				"williamboman/mason.nvim",
+				run = function()
+					pcall(vim.cmd, "MasonUpdate")
+				end,
+			},
+			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
 
-            -- Function signature hints
-            {"ray-x/lsp_signature.nvim"},
-        },
-    }
+			-- Autocompletion
+			{ "hrsh7th/nvim-cmp" }, -- Required
+			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
+			{ "L3MON4D3/LuaSnip" }, -- Required
 
-    -- Status line
-    use {
-      'nvim-lualine/lualine.nvim',
-      requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-    }
+			-- Function signature hints
+			{ "ray-x/lsp_signature.nvim" },
+		},
+	})
 
-    -- Comments
-    use('terrortylor/nvim-comment')
+	-- Status line
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "nvim-tree/nvim-web-devicons", opt = true },
+	})
 
-    -- Which-key
-    use('folke/which-key.nvim')
+	-- Comments
+	use("terrortylor/nvim-comment")
 
-    -- Surround
-    use {
-        "kylechui/nvim-surround",
-        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-    }
+	-- Which-key
+	use("folke/which-key.nvim")
 
-    -- Autopair & autotag
-    use('windwp/nvim-ts-autotag')
-    use('windwp/nvim-autopairs')
+	-- Surround
+	use({
+		"kylechui/nvim-surround",
+		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+	})
 
-    -- JSX/TSX formatting fix
-    use('MaxMEllon/vim-jsx-pretty')
+	-- Autopair & autotag
+	use("windwp/nvim-ts-autotag")
+	use("windwp/nvim-autopairs")
 
-    -- Show indentation level lines
-    use('lukas-reineke/indent-blankline.nvim')
+	-- JSX/TSX formatting fix
+	use("MaxMEllon/vim-jsx-pretty")
 
-    -- Harpoon
-    use('ThePrimeagen/harpoon')
+	-- Show indentation level lines
+	use("lukas-reineke/indent-blankline.nvim")
 
-    -- Breadcrumbs
-    use {
-        "SmiteshP/nvim-navic",
-        requires = "neovim/nvim-lspconfig",
-        after = 'nvim-lspconfig',
-    }
+	-- Harpoon
+	use("ThePrimeagen/harpoon")
 
-    -- Navbuddy
-    use {
-        "SmiteshP/nvim-navbuddy",
-        requires = {
-            "neovim/nvim-lspconfig",
-            "SmiteshP/nvim-navic",
-            "MunifTanjim/nui.nvim",
-            "nvim-telescope/telescope.nvim" -- Optional
-        }
-    }
+	-- Breadcrumbs
+	use({
+		"SmiteshP/nvim-navic",
+		requires = "neovim/nvim-lspconfig",
+		after = "nvim-lspconfig",
+	})
 
+	-- Navbuddy
+	use({
+		"SmiteshP/nvim-navbuddy",
+		requires = {
+			"neovim/nvim-lspconfig",
+			"SmiteshP/nvim-navic",
+			"MunifTanjim/nui.nvim",
+			"nvim-telescope/telescope.nvim", -- Optional
+		},
+	})
 end)
-
