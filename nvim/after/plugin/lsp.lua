@@ -32,7 +32,7 @@ lsp.setup_nvim_cmp({
 })
 
 lsp.on_attach(function(client, bufnr)
-	local opts = { buffer = bufnr, remap = false }
+    local opts = { buffer = bufnr, remap = false }
 
 	-- LSP
 	vim.keymap.set("n", "<leader>ld", ":lua vim.lsp.buf.definition()", opts)

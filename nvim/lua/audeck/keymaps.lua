@@ -83,4 +83,9 @@ vim.keymap.set("n", "`", "<C-^>")
 vim.keymap.set("v", "<Tab>", ">gv")
 vim.keymap.set("v", "<S-Tab>", "<gv")
 
+-- ???
 vim.keymap.set("i", "<Esc>", "<Esc>")
+
+-- [Constrol + /, ?]: Next/prev search candidate
+vim.keymap.set("n", "<C-_>", "n")
+vim.keymap.set("n", "<BS>", "N")
