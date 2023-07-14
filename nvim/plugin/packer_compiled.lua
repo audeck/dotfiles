@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/audeck/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["dropbar.nvim"] = {
+    loaded = true,
+    path = "/home/audeck/.local/share/nvim/site/pack/packer/start/dropbar.nvim",
+    url = "https://github.com/Bekaboo/dropbar.nvim"
+  },
   ["formatter.nvim"] = {
     loaded = true,
     path = "/home/audeck/.local/share/nvim/site/pack/packer/start/formatter.nvim",
@@ -165,10 +170,8 @@ _G.packer_plugins = {
     url = "https://github.com/SmiteshP/nvim-navbuddy"
   },
   ["nvim-navic"] = {
-    load_after = {},
     loaded = true,
-    needs_bufread = false,
-    path = "/home/audeck/.local/share/nvim/site/pack/packer/opt/nvim-navic",
+    path = "/home/audeck/.local/share/nvim/site/pack/packer/start/nvim-navic",
     url = "https://github.com/SmiteshP/nvim-navic"
   },
   ["nvim-surround"] = {
@@ -245,11 +248,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Load plugins in order defined by `after`
-time([[Sequenced loading]], true)
-vim.cmd [[ packadd nvim-lspconfig ]]
-vim.cmd [[ packadd nvim-navic ]]
-time([[Sequenced loading]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
