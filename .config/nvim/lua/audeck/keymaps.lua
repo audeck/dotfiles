@@ -9,7 +9,7 @@ vim.keymap.set("n", "<leader>pv", ":Ex<cr>")
 
 -- [I]: navigate up & half-page scroll up
 vim.keymap.set("", "i", "k")
-vim.keymap.set("", "I", "<C-u>zz")
+vim.keymap.set("", "I", "<C-u>") -- add 'zz' after to center screen
 
 -- [J]: navigate left & navigate to prev word
 vim.keymap.set("", "j", "h")
@@ -17,7 +17,7 @@ vim.keymap.set("", "J", "b")
 
 -- [K]: navigate down & half-page scroll down
 vim.keymap.set("", "k", "j")
-vim.keymap.set("", "K", "<C-d>zz")
+vim.keymap.set("", "K", "<C-d>")
 
 -- [L]: navigate right & navigate to next word
 vim.keymap.set("", "l", "l")
@@ -78,6 +78,8 @@ vim.keymap.set("", "<A-k>", ":m '>+1<CR>gv=gv")
 
 -- [`]: Go to previous file
 vim.keymap.set("n", "`", "<C-^>")
+vim.keymap.set("n", "<C-left>", ":bp<CR>")
+vim.keymap.set("n", "<C-right>", ":bn<CR>")
 
 -- [Tab, Shift + Tab]: Indenting in visual mode
 vim.keymap.set("v", "<Tab>", ">gv")
@@ -86,6 +88,6 @@ vim.keymap.set("v", "<S-Tab>", "<gv")
 -- ???
 vim.keymap.set("i", "<Esc>", "<Esc>")
 
--- [Constrol + /, ?]: Next/prev search candidate
+-- [Control + /, ?]: Next/prev search candidate
 vim.keymap.set("n", "<C-_>", "n")
 vim.keymap.set("n", "<BS>", "N")
