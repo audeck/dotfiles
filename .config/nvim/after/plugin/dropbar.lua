@@ -1,3 +1,0 @@
--- require('dropbar').setup({
---     icons = {enable = false, kinds = {use_devicons = false}}
--- })
