@@ -79,8 +79,8 @@ return require("packer").startup(function(use)
     -- Harpoon
     use("ThePrimeagen/harpoon")
 
-    -- Breadcrumbs
-    use('Bekaboo/dropbar.nvim')
+    -- Breadcrumbs (disabled until further notice due to tmux unicode issues)
+    use("SmiteshP/nvim-navic")
 
     -- Navbuddy
     use({

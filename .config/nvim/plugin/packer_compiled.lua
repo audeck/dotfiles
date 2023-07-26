@@ -84,11 +84,6 @@ _G.packer_plugins = {
     path = "/home/audeck/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
-  ["dropbar.nvim"] = {
-    loaded = true,
-    path = "/home/audeck/.local/share/nvim/site/pack/packer/start/dropbar.nvim",
-    url = "https://github.com/Bekaboo/dropbar.nvim"
-  },
   ["formatter.nvim"] = {
     loaded = true,
     path = "/home/audeck/.local/share/nvim/site/pack/packer/start/formatter.nvim",
