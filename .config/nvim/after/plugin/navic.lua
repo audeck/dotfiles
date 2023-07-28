@@ -50,5 +50,6 @@ require('nvim-navic').setup({
 })
 
 -- Insert navic into Vim's winbar
-vim.o.winbar = " %{%v:lua.require'nvim-navic'.get_location()%}"
+vim.o.winbar = " %f " .. separator ..
+                   " %{%v:lua.require'nvim-navic'.get_location()%}"
 
