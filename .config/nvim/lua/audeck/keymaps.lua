@@ -68,28 +68,26 @@ vim.keymap.set("n", "s", "c")
 vim.keymap.set("n", "S", "bdwi")
 
 -- [D]: delete word
+vim.keymap.set("n", "d", "d")
 vim.keymap.set("n", "D", "bdw")
 
--- [N]: newline before & after (best paired with multipliers)
+-- [N]: insert newline before & after
 vim.keymap.set("n", "n", "o<Esc>")
 vim.keymap.set("n", "N", "O<Esc>")
 
--- [Control + w + (I, J, K, L)]: window navigation
+-- [Control + w + I/J/K/L]: window navigation
 vim.keymap.set("n", "<C-w>i", "<C-w>k")
 vim.keymap.set("n", "<C-w>j", "<C-w>h")
 vim.keymap.set("n", "<C-w>k", "<C-w>j")
 vim.keymap.set("n", "<C-w>l", "<C-w>l")
 
--- [w]: rebinding w -> aw for deleting word around cursor
-vim.keymap.set("n", "w", "bw")
-
 -- [Control + i, k]: moving selected lines up & down
--- vim.keymap.set("n", "<A-k>", "gv :m '>+1<CR>gv=gv <Esc>")
--- vim.keymap.set("n", "<A-i>", "gv :m '<-2<CR>gv=gv <Esc>")
 vim.keymap.set("v", "<A-k>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<A-i>", ":m '<-2<CR>gv=gv")
+-- vim.keymap.set("n", "<A-k>", "gv :m '>+1<CR>gv=gv <Esc>")
+-- vim.keymap.set("n", "<A-i>", "gv :m '<-2<CR>gv=gv <Esc>")
 
--- [`]: Go to previous file
+-- [`, Control + J/L]: Go to previous buffer, go to prev/next buffer
 vim.keymap.set("n", "`", "<C-^>")
 vim.keymap.set("n", "<C-j>", ":bp<CR>")
 vim.keymap.set("n", "<C-l>", ":bn<CR>")
