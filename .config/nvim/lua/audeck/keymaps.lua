@@ -45,12 +45,23 @@ vim.keymap.set("n", "Q", "V")
 vim.keymap.set("n", "<C-q>", "<C-v>")
 
 -- [A]: insert mode after & before
-vim.keymap.set("n", "a", "a<C-f>")
 vim.keymap.set("n", "A", "i")
+vim.keymap.set("n", "a", function()
+    -- Send the 'a' key
+    vim.api.nvim_feedkeys('a', 'n', true)
+
+    -- If 'indentexpr' is set in the buffer, also send '<C-f>'
+    -- to insert leading indentation using it
+    if vim.bo.indentexpr ~= '' then
+        local termcode = vim.api.nvim_replace_termcodes('<C-f>', true, true,
+                                                        true) -- What the format?!
+        vim.api.nvim_feedkeys(termcode, 'n', true)
+    end
+end)
 
 -- [Z]: undo & redo
-vim.keymap.set("", "z", "u")
-vim.keymap.set("", "Z", "<C-r>")
+vim.keymap.set("n", "z", "u")
+vim.keymap.set("n", "Z", "<C-r>")
 
 -- [S]: substitute, substitute line word
 vim.keymap.set("n", "s", "c")
@@ -73,21 +84,23 @@ vim.keymap.set("n", "<C-w>l", "<C-w>l")
 vim.keymap.set("n", "w", "bw")
 
 -- [Control + i, k]: moving selected lines up & down
-vim.keymap.set("", "<A-i>", ":m '<-2<CR>gv=gv")
-vim.keymap.set("", "<A-k>", ":m '>+1<CR>gv=gv")
+-- vim.keymap.set("n", "<A-k>", "gv :m '>+1<CR>gv=gv <Esc>")
+-- vim.keymap.set("n", "<A-i>", "gv :m '<-2<CR>gv=gv <Esc>")
+vim.keymap.set("v", "<A-k>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<A-i>", ":m '<-2<CR>gv=gv")
 
 -- [`]: Go to previous file
 vim.keymap.set("n", "`", "<C-^>")
-vim.keymap.set("n", "<C-left>", ":bp<CR>")
-vim.keymap.set("n", "<C-right>", ":bn<CR>")
+vim.keymap.set("n", "<C-j>", ":bp<CR>")
+vim.keymap.set("n", "<C-l>", ":bn<CR>")
 
 -- [Tab, Shift + Tab]: Indenting in visual mode
 vim.keymap.set("v", "<Tab>", ">gv")
 vim.keymap.set("v", "<S-Tab>", "<gv")
 
--- ???
+-- ??? (DON'T ASK)
 vim.keymap.set("i", "<Esc>", "<Esc>")
 
 -- [Control + /, ?]: Next/prev search candidate
-vim.keymap.set("n", "<C-_>", "n")
-vim.keymap.set("n", "<BS>", "N")
+vim.keymap.set("n", "<BS>", "n") -- <C-/>
+vim.keymap.set("n", "<C-_>", "N") -- <C-S-/> == <C-?>
