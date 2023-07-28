@@ -1,6 +1,9 @@
 require('lualine').setup {
     options = {
         theme = 'auto',
+        -- NOTE: tmux and neovim have a heated disagreement about how wide
+        --       some unicode characters (such as devicons) are, hence they
+        --       are, unfortunately, disabled
         icons_enabled = false,
         section_separators = {left = '', right = ''},
         component_separators = {left = '|', right = '|'}
