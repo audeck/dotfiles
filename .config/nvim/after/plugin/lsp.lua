@@ -1,4 +1,5 @@
 local lsp = require("lsp-zero")
+local telescope = require("telescope.builtin")
 
 lsp.preset("recommended")
 lsp.ensure_installed({"tsserver", "eslint", "rust_analyzer"})
@@ -21,25 +22,36 @@ lsp.set_preferences({set_lsp_keymaps = false})
 
 lsp.setup_nvim_cmp({mapping = cmp_mappings})
 
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_, bufnr)
     local opts = {buffer = bufnr, remap = false}
 
-    -- LSP
-    vim.keymap.set("n", "<leader>ld", ":lua vim.lsp.buf.definition()", opts)
-    vim.keymap.set("n", "<leader>lD", ":lua vim.lsp.buf.declaration()", opts)
-    vim.keymap.set("n", "<leader>lr", ":lua vim.lsp.buf.references()", opts)
-    vim.keymap.set("n", "<leader>li", ":lua vim.lsp.buf.implementation()", opts)
-    vim.keymap.set("n", "<leader>lt", ":lua vim.lsp.buf.hover()<CR>", opts)
-    vim.keymap
-        .set("n", "<leader>la", ":lua vim.lsp.buf.code_action()<CR>", opts)
+    -- LSP functions
+    local definitions = function() telescope.lsp_definitions() end
+    local declarations = function() vim.lsp.buf.declaration() end
+    local references = function() telescope.lsp_references() end
+    local implementations = function() telescope.lsp_implementations() end
+    local inspect_type = function() vim.lsp.buf.hover() end
+    local code_actions = function() vim.lsp.buf.code_action() end
 
-    -- DIAGNOSTICS
-    vim.keymap.set("n", "<leader>ds", ":lua vim.diagnostic.open_float()<CR>",
-                   opts)
-    vim.keymap.set("n", "<leader>dk", ":lua vim.diagnostic.goto_next()<CR>",
-                   opts)
-    vim.keymap.set("n", "<leader>di", ":lua vim.diagnostic.goto_prev()<CR>",
-                   opts)
+    -- LSP keymaps
+    vim.keymap.set("n", "<leader>ld", definitions, opts)
+    vim.keymap.set("n", "<leader>lD", declarations, opts)
+    vim.keymap.set("n", "<leader>lr", references, opts)
+    vim.keymap.set("n", "<leader>li", implementations, opts)
+    vim.keymap.set("n", "<leader>lt", inspect_type, opts)
+    vim.keymap.set("n", "<leader>la", code_actions, opts)
+
+    -- DIAGNOSTICS functions
+    local diagnostics_show = function() vim.diagnostic.open_float() end
+    local diagnostics_all = function() telescope.diagnostics() end
+    local diagnostics_file = function()
+        telescope.diagnostics({bufnr = bufnr})
+    end
+
+    -- DIAGNOSTICS keymaps
+    vim.keymap.set("n", "<leader>da", diagnostics_all, opts)
+    vim.keymap.set("n", "<leader>df", diagnostics_file, opts)
+    vim.keymap.set("n", "<leader>ds", diagnostics_show, opts)
 
     -- which-key
     require("which-key").register({
@@ -51,14 +63,9 @@ lsp.on_attach(function(client, bufnr)
                 i = {"See implementation"},
                 r = {"See references"},
                 t = {"See variable type"},
-                a = {"Code actions"}
+                a = {"See code actions"}
             },
-            d = {
-                name = "Diagnostics",
-                s = {"Show current"},
-                i = {"Show previous"},
-                k = {"Show next"}
-            }
+            d = {name = "Diagnostics", s = {"Show current"}, a = {"Show all"}}
         }
     }, {mode = "n"})
 end)
@@ -66,7 +73,7 @@ end)
 ---- Server specific configs using lspconfig ----
 
 local lspconfig = require("lspconfig")
-lspconfig.tsserver.setup({})
+lspconfig.tsserver.setup({}) -- example
 
 ---- setup() ----
 

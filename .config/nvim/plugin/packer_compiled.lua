@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/home/audeck/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
+  ["lazygit.nvim"] = {
+    loaded = true,
+    path = "/home/audeck/.local/share/nvim/site/pack/packer/start/lazygit.nvim",
+    url = "https://github.com/kdheepak/lazygit.nvim"
+  },
   ["lsp-zero.nvim"] = {
     loaded = true,
     path = "/home/audeck/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
@@ -224,11 +229,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/audeck/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
-  },
-  ["vim-fugitive"] = {
-    loaded = true,
-    path = "/home/audeck/.local/share/nvim/site/pack/packer/start/vim-fugitive",
-    url = "https://github.com/tpope/vim-fugitive"
   },
   ["vim-jsx-pretty"] = {
     loaded = true,

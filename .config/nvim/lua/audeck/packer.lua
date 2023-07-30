@@ -21,10 +21,19 @@ return require("packer").startup(function(use)
     -- Transparency
     use("xiyaowong/transparent.nvim")
 
+    -- Treesitter
     use("nvim-treesitter/nvim-treesitter", {run = ":TSUpdate"})
     use("nvim-treesitter/playground")
+
+    -- Undotree
     use("mbbill/undotree")
-    use("tpope/vim-fugitive")
+
+    -- Git
+    use({
+        "kdheepak/lazygit.nvim",
+        -- optional for floating window border decoration
+        requires = {"nvim-lua/plenary.nvim"}
+    })
 
     -- Formatter
     use("mhartington/formatter.nvim")
