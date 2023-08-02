@@ -19,8 +19,11 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 
 lsp.set_preferences({ set_lsp_keymaps = false })
-
 lsp.setup_nvim_cmp({ mapping = cmp_mappings })
+
+
+
+------------------------------- LSP on_attach() -------------------------------
 
 lsp.on_attach(function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
@@ -75,20 +78,18 @@ lsp.on_attach(function(_, bufnr)
     }, { mode = "n" })
 end)
 
----- Server specific configs using lspconfig ----
+
+
+------------------- Server specific configs using lspconfig -------------------
 
 local lspconfig = require("lspconfig")
-
--- lspconfig.lua_ls.setup({settings = {Lua = {diagnostics = {globals = {vim}}, format = {
---     enable = true,
--- }}}})
-
 
 lspconfig.lua_ls.setup({
     settings = {
         Lua = {
             runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                -- Tell the language server which version of Lua you're
+                -- using (most likely LuaJIT in the case of Neovim)
                 version = 'LuaJIT',
             },
             diagnostics = {
@@ -99,7 +100,8 @@ lspconfig.lua_ls.setup({
                 -- Make the server aware of Neovim runtime files
                 library = vim.api.nvim_get_runtime_file("", true),
             },
-            -- Do not send telemetry data containing a randomized but unique identifier
+            -- Do not send telemetry data containing a randomized,
+            -- but unique nonetheless, identifier
             telemetry = {
                 enable = false,
             },
@@ -111,6 +113,8 @@ lspconfig.lua_ls.setup({
 })
 
 lspconfig.csharp_ls.setup({
+    -- Better root directory matching for multi-.csproj projects
+    -- containing a single sulution
     root_dit = function(startpath)
         return lspconfig.util.root_pattern("*.sln")(startpath) or
             lspconfig.util.root_pattern("*.csproj")(startpath) or
@@ -119,6 +123,8 @@ lspconfig.csharp_ls.setup({
     end
 })
 
----- setup() ----
+
+
+----------------------------------- setup() -----------------------------------
 
 lsp.setup()
