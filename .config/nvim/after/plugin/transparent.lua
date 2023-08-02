@@ -6,5 +6,5 @@ require('transparent').setup({
     },
 })
 
-vim.api.nvim_command('TransparentEnable')
+-- vim.api.nvim_command('TransparentEnable')
 

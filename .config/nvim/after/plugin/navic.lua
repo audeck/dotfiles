@@ -46,10 +46,9 @@ require('nvim-navic').setup({
     depth_limit_indicator = "..",
 
     -- Auto lsp
-    lsp = {auto_attach = true}
+    lsp = { auto_attach = true }
 })
 
 -- Insert navic into Vim's winbar
 vim.o.winbar = " %f " .. separator ..
-                   " %{%v:lua.require'nvim-navic'.get_location()%}"
-
+    " %{%v:lua.require'nvim-navic'.get_location()%}"

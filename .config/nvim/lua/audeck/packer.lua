@@ -10,7 +10,7 @@ return require("packer").startup(function(use)
         "nvim-telescope/telescope.nvim",
         tag = "0.1.1",
         -- or                          , branch = '0.1.x',
-        requires = {{"nvim-lua/plenary.nvim"}}
+        requires = { { "nvim-lua/plenary.nvim" } }
     })
 
     -- Color themes
@@ -22,7 +22,7 @@ return require("packer").startup(function(use)
     use("xiyaowong/transparent.nvim")
 
     -- Treesitter
-    use("nvim-treesitter/nvim-treesitter", {run = ":TSUpdate"})
+    use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
     use("nvim-treesitter/playground")
 
     -- Undotree
@@ -32,7 +32,7 @@ return require("packer").startup(function(use)
     use({
         "kdheepak/lazygit.nvim",
         -- optional for floating window border decoration
-        requires = {"nvim-lua/plenary.nvim"}
+        requires = { "nvim-lua/plenary.nvim" }
     })
 
     -- Formatter
@@ -44,23 +44,23 @@ return require("packer").startup(function(use)
         branch = "v2.x",
         requires = {
             -- LSP Support
-            {"neovim/nvim-lspconfig", requires = "catppuccin/nvim"}, {
-                "williamboman/mason.nvim",
-                run = function() pcall(vim.cmd, "MasonUpdate") end
-            }, {"williamboman/mason-lspconfig.nvim"}, -- Optional
+            { "neovim/nvim-lspconfig",            requires = "catppuccin/nvim" }, {
+            "williamboman/mason.nvim",
+            run = function() pcall(vim.cmd, "MasonUpdate") end
+        }, { "williamboman/mason-lspconfig.nvim" },   -- Optional
             -- Autocompletion
-            {"hrsh7th/nvim-cmp"}, -- Required
-            {"hrsh7th/cmp-nvim-lsp"}, -- Required
-            {"L3MON4D3/LuaSnip"}, -- Required
+            { "hrsh7th/nvim-cmp" },                   -- Required
+            { "hrsh7th/cmp-nvim-lsp" },               -- Required
+            { "L3MON4D3/LuaSnip" },                   -- Required
             -- Function signature hints
-            {"ray-x/lsp_signature.nvim"}
+            { "ray-x/lsp_signature.nvim" }
         }
     })
 
     -- Status line
     use({
         "nvim-lualine/lualine.nvim",
-        requires = {"nvim-tree/nvim-web-devicons", opt = true}
+        requires = { "nvim-tree/nvim-web-devicons", opt = true }
     })
 
     -- Comments

@@ -10,7 +10,7 @@ if vim.fn.has("wsl") == 1 then
             ['+'] = 'win32yank.exe -o --lf',
             ['*'] = 'win32yank.exe -o --lf'
         },
-        cache_enabled = true
+        cache_enabled = true,
     }
 
     -- NOTE: WslClipboard is REALLY slow!
@@ -21,7 +21,6 @@ if vim.fn.has("wsl") == 1 then
     --         ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
     --         ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))'
     --     },
-    --     cache_enabled = true
+    --     cache_enabled = true,
     -- }
 end
-

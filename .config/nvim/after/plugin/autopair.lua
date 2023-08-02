@@ -2,7 +2,7 @@ local npairs = require('nvim-autopairs')
 local cond = require('nvim-autopairs.conds')
 local Rule = require('nvim-autopairs.rule')
 
-npairs.setup({check_ts = true})
+npairs.setup({ check_ts = true })
 
 -- https://github.com/windwp/nvim-autopairs/wiki/Rules-API
 -- npairs.add_rules({  -- autotag seems impossible to do
@@ -11,4 +11,3 @@ npairs.setup({check_ts = true})
 --         :with_move(cond.after_text('>'))
 -- })
 --
-

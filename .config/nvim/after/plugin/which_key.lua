@@ -7,10 +7,12 @@ if enabled then
     vim.o.timeoutlen = 1
 
     wk.setup({
-        window = {border = "single", padding = {0, 0, 0, 0}},
+        window = { border = "single", padding = { 0, 0, 0, 0 } },
 
         plugins = {
-            spelling = {enabled = false},
+            spelling = {
+                enabled = false,
+            },
             presets = {
                 operators = false,
                 motions = false,
@@ -18,13 +20,13 @@ if enabled then
                 windows = true,
                 nav = false,
                 z = false,
-                g = false
+                g = false,
             }
         },
 
         triggers = {
             "<leader>", -- plugins
-            "<C-w>" -- windows
-        }
+            "<C-w>"     -- windows
+        },
     })
 end

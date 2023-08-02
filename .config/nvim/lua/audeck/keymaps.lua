@@ -32,12 +32,12 @@ vim.keymap.set("", "o", "$")
 vim.keymap.set("", "O", "]]")
 
 -- [C]: copy (yank)
-vim.keymap.set("", "c", "y")
-vim.keymap.set("", "C", "Y")
+vim.keymap.set("", "c", 'y')
+vim.keymap.set("", "C", 'Y')
 
 -- [V]: paste before & after
-vim.keymap.set("", "v", "p")
-vim.keymap.set("", "V", "P")
+vim.keymap.set("", "v", 'p')
+vim.keymap.set("", "V", 'P')
 
 -- [Q]: visual modes
 vim.keymap.set("n", "q", "v")
