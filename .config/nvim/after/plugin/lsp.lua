@@ -112,15 +112,36 @@ lspconfig.lua_ls.setup({
     },
 })
 
-lspconfig.csharp_ls.setup({
+-- lspconfig.csharp_ls.setup({
+--     -- Better root directory matching for multi-.csproj projects
+--     -- containing a single sulution
+--     root_dir = function(startpath)
+--         return lspconfig.util.root_pattern("*.sln")(startpath)
+--             or lspconfig.util.root_pattern("*.csproj")(startpath)
+--             or lspconfig.util.root_pattern("*.fsproj")(startpath)
+--             or lspconfig.util.root_pattern(".git")(startpath)
+--     end
+-- })
+
+lspconfig.omnisharp.setup({
+    -- Allows auto-completion for classes, methods, etc.
+    -- that haven't been imported
+    enable_import_completion = true,
+
     -- Better root directory matching for multi-.csproj projects
     -- containing a single sulution
-    root_dit = function(startpath)
-        return lspconfig.util.root_pattern("*.sln")(startpath) or
-            lspconfig.util.root_pattern("*.csproj")(startpath) or
-            lspconfig.util.root_pattern("*.fsproj")(startpath) or
-            lspconfig.util.root_pattern(".git")(startpath)
-    end
+    -- root_dir = function(startpath)
+    --     return lspconfig.util.root_pattern("*.sln")(startpath)
+    --         or lspconfig.util.root_pattern("*.csproj")(startpath)
+    --         or lspconfig.util.root_pattern("*.fsproj")(startpath)
+    --         or lspconfig.util.root_pattern(".git")(startpath)
+    -- end,
+
+    -- Default root_dir behavior
+    root_dir = function(fname)
+        local root_patterns = { '*.sln', '*.csproj', 'omnisharp.json', 'function.json' }
+        return lspconfig.util.root_pattern(root_patterns)(fname)
+    end,
 })
 
 

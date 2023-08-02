@@ -11,6 +11,8 @@ vim.api.nvim_create_autocmd('filetype', {
         bind('j', '-<esc>')
         bind('k', '<C-Down>')
         bind('l', '<CR>')
+        bind('I', '<C-u>')
+        bind('K', '<C-d>')
         vim.keymap.set('v', 'mf', ':normal mf<CR>', { noremap = true, buffer = true })
 
         -- new file
