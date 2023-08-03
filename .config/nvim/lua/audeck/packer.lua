@@ -57,6 +57,12 @@ return require("packer").startup(function(use)
         }
     })
 
+    -- Incremental renaming
+    use {
+        "smjonas/inc-rename.nvim",
+        config = function() require("inc_rename").setup() end
+    }
+
     -- Status line
     use({
         "nvim-lualine/lualine.nvim",
