@@ -2,28 +2,31 @@ local lsp = require("lsp-zero")
 local telescope = require("telescope.builtin")
 
 lsp.preset("recommended")
-lsp.ensure_installed({"tsserver", "eslint", "rust_analyzer"})
+lsp.ensure_installed({ "lua_ls", "tsserver", "eslint", "rust_analyzer" })
 
 local cmp = require("cmp")
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
     ["<Tab>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.scroll_docs(-1),
     ["<C-k>"] = cmp.mapping.select_next_item(),
     ["<C-l>"] = cmp.mapping.scroll_docs(1),
-    ["<CR>"] = cmp.mapping.confirm({select = true}),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
     ["<C-Space>"] = cmp.mapping.complete(),
 
-    ["<Left>"] = cmp.mapping(cmp.mapping.select_prev_item(), {"i", "c"}),
-    ["<Right>"] = cmp.mapping(cmp.mapping.select_next_item(), {"i", "c"})
+    ["<Left>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+    ["<Right>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" })
 })
 
-lsp.set_preferences({set_lsp_keymaps = false})
+lsp.set_preferences({ set_lsp_keymaps = false })
+lsp.setup_nvim_cmp({ mapping = cmp_mappings })
 
-lsp.setup_nvim_cmp({mapping = cmp_mappings})
+
+
+------------------------------- LSP on_attach() -------------------------------
 
 lsp.on_attach(function(_, bufnr)
-    local opts = {buffer = bufnr, remap = false}
+    local opts = { buffer = bufnr, remap = false }
 
     -- LSP functions
     local definitions = function() telescope.lsp_definitions() end
@@ -45,7 +48,7 @@ lsp.on_attach(function(_, bufnr)
     local diagnostics_show = function() vim.diagnostic.open_float() end
     local diagnostics_all = function() telescope.diagnostics() end
     local diagnostics_file = function()
-        telescope.diagnostics({bufnr = bufnr})
+        telescope.diagnostics({ bufnr = bufnr })
     end
 
     -- DIAGNOSTICS keymaps
@@ -58,23 +61,91 @@ lsp.on_attach(function(_, bufnr)
         ["<leader>"] = {
             l = {
                 name = "LSP",
-                d = {"See definition"},
-                D = {"See declaration"},
-                i = {"See implementation"},
-                r = {"See references"},
-                t = {"See variable type"},
-                a = {"See code actions"}
+                d = { "See definition" },
+                D = { "See declaration" },
+                i = { "See implementation" },
+                r = { "See references" },
+                t = { "See variable type" },
+                a = { "See code actions" }
             },
-            d = {name = "Diagnostics", s = {"Show current"}, a = {"Show all"}}
+            d = {
+                name = "Diagnostics",
+                s = { "Show current" },
+                f = { "Show all in file" },
+                a = { "Show all" }
+            }
         }
-    }, {mode = "n"})
+    }, { mode = "n" })
 end)
 
----- Server specific configs using lspconfig ----
+
+
+------------------- Server specific configs using lspconfig -------------------
 
 local lspconfig = require("lspconfig")
-lspconfig.tsserver.setup({}) -- example
 
----- setup() ----
+lspconfig.lua_ls.setup({
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're
+                -- using (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { 'vim' },
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            -- Do not send telemetry data containing a randomized,
+            -- but unique nonetheless, identifier
+            telemetry = {
+                enable = false,
+            },
+            format = {
+                enable = true,
+            },
+        },
+    },
+})
+
+-- lspconfig.csharp_ls.setup({
+--     -- Better root directory matching for multi-.csproj projects
+--     -- containing a single sulution
+--     root_dir = function(startpath)
+--         return lspconfig.util.root_pattern("*.sln")(startpath)
+--             or lspconfig.util.root_pattern("*.csproj")(startpath)
+--             or lspconfig.util.root_pattern("*.fsproj")(startpath)
+--             or lspconfig.util.root_pattern(".git")(startpath)
+--     end
+-- })
+
+lspconfig.omnisharp.setup({
+    -- Allows auto-completion for classes, methods, etc.
+    -- that haven't been imported
+    enable_import_completion = true,
+
+    -- Better root directory matching for multi-.csproj projects
+    -- containing a single sulution
+    -- root_dir = function(startpath)
+    --     return lspconfig.util.root_pattern("*.sln")(startpath)
+    --         or lspconfig.util.root_pattern("*.csproj")(startpath)
+    --         or lspconfig.util.root_pattern("*.fsproj")(startpath)
+    --         or lspconfig.util.root_pattern(".git")(startpath)
+    -- end,
+
+    -- Default root_dir behavior
+    root_dir = function(fname)
+        local root_patterns = { '*.sln', '*.csproj', 'omnisharp.json', 'function.json' }
+        return lspconfig.util.root_pattern(root_patterns)(fname)
+    end,
+})
+
+
+
+----------------------------------- setup() -----------------------------------
 
 lsp.setup()

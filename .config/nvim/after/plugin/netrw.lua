@@ -3,7 +3,7 @@ vim.api.nvim_create_autocmd('filetype', {
     desc = 'Better mappings for netrw',
     callback = function()
         local bind = function(lhs, rhs)
-            vim.keymap.set('n', lhs, rhs, {remap = true, buffer = true})
+            vim.keymap.set('n', lhs, rhs, { remap = true, buffer = true })
         end
 
         -- navigation
@@ -11,6 +11,8 @@ vim.api.nvim_create_autocmd('filetype', {
         bind('j', '-<esc>')
         bind('k', '<C-Down>')
         bind('l', '<CR>')
+        bind('I', '<C-u>')
+        bind('K', '<C-d>')
         vim.keymap.set('v', 'mf', ':normal mf<CR>', { noremap = true, buffer = true })
 
         -- new file
@@ -18,7 +20,6 @@ vim.api.nvim_create_autocmd('filetype', {
 
         -- rename file
         bind('r', 'R')
-
     end
 })
 

@@ -4,7 +4,7 @@ require('catppuccin').setup({
         navic = true,
         mason = true,
         treesitter = true,
-        telescope = {enabled = true},
-        which_key = true
+        telescope = { enabled = true },
+        which_key = true,
     }
 })
