@@ -1,0 +1,26 @@
+/**
+
+# Unignore gitignore
+!.gitignore
+
+# Unignore tmux config
+!.tmux.conf
+
+# A file cannot be re-included if it's parent directory
+# is excluded, hence the following:
+!.config
+.config/**
+
+# Unignore nvim config files
+!.config/nvim/
+!.config/nvim/**
+
+# Re-ignore unneeded nvim config files
+.config/nvim/plugin
+.config/nvim/.netrwhist
+.config/nvim/.todo.md
+
+# Unignore lazygit config files
+!.config/lazygit
+!.config/lazygit/**
+.config/lazygit/state.yml
