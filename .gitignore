@@ -3,6 +3,9 @@
 # Unignore gitignore
 !.gitignore
 
+# Unignore .ideavimrc
+!.ideavimrc
+
 # Unignore tmux config
 !.tmux.conf
 

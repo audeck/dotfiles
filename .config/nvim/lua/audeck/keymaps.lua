@@ -54,7 +54,7 @@ vim.keymap.set("n", "a", function()
     -- to insert leading indentation using it
     if vim.bo.indentexpr ~= '' then
         local termcode = vim.api.nvim_replace_termcodes('<C-f>', true, true,
-                                                        true) -- What the format?!
+            true) -- What the format?!
         vim.api.nvim_feedkeys(termcode, 'n', true)
     end
 end)
@@ -96,9 +96,10 @@ vim.keymap.set("n", "<C-l>", ":bn<CR>")
 vim.keymap.set("v", "<Tab>", ">gv")
 vim.keymap.set("v", "<S-Tab>", "<gv")
 
--- ??? (DON'T ASK)
-vim.keymap.set("i", "<Esc>", "<Esc>")
+-- [, & .]: Next/prev search candidate
+vim.keymap.set("n", ",", "n")
+vim.keymap.set("n", ".", "N")
 
--- [Control + /, ?]: Next/prev search candidate
-vim.keymap.set("n", "<BS>", "n") -- <C-/>
-vim.keymap.set("n", "<C-_>", "N") -- <C-S-/> == <C-?>
+-- Split/join lines
+vim.keymap.set("n", ">", "i<CR><Esc>V=<Esc>^h")
+vim.keymap.set("n", "<", "^d0i<BS><Esc>$w")

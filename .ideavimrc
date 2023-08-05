@@ -1,0 +1,160 @@
+" Leader key
+let g:mapleader = " "
+
+" Relative line numbers
+set relativenumber
+set number
+
+" Scroll offset
+set scrolloff=10
+
+" Search options
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" Which-key
+set which-key
+set notimeout
+
+" Navigation using ijkl
+noremap i k
+noremap j h
+noremap k j
+noremap l l
+
+" Half-page scrolls
+noremap I <C-u>
+noremap K <C-d>
+
+" Word navigation
+noremap J b
+noremap L w
+
+" Navigate to start/end of line
+noremap u ^
+noremap o $
+
+" Navigate to start/end of FILE
+noremap U [[
+noremap O ]]
+
+" Yank
+noremap c y
+noremap C Y
+
+" Paste
+noremap v p
+noremap V P
+
+" Visual mode
+nnoremap q v
+nnoremap Q V
+nnoremap <C-q> <C-v>
+
+" Insert mode
+nnoremap a a
+nnoremap A i
+
+" Undo & redo
+noremap z :action $Undo<CR>
+noremap Z :action $Redo<CR>
+
+" Substitute
+nnoremap s c
+nnoremap S bdwi
+
+" Delete
+nnoremap d d
+nnoremap D bdw
+
+" Insert blank line before & after
+noremap n o<Esc>
+noremap N O<Esc>
+
+" Window navigation
+nnoremap <C-w>i <C-w>k
+nnoremap <C-w>j <C-w>h
+nnoremap <C-w>k <C-w>j
+nnoremap <C-w>l <C-w>l
+nnoremap <C-w>q :action CloseEditor<CR>
+
+" Move lines in visual mode
+vnoremap <A-k> :m '>+1<CR>gv=gv
+vnoremap <A-i> :m '<-2<CR>gv=gv
+
+" Buffer navigation (last, previous, next)
+nnoremap ` <C-^>
+nnoremap <C-j> :bp<CR>
+nnoremap <C-l> :bn<CR>
+
+" Visual mode indentation
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" Search candidates (previous, next)
+nnoremap , n
+nnoremap . N
+
+" Split/join lines
+nnoremap > i<CR><Esc>V=<Esc>^h
+nnoremap < ^d0i<BS><Esc>$w
+
+
+
+"""""" Project actions """"""
+nnoremap <leader>pf :action GotoFile<CR>
+nnoremap <leader>ps :action TextSearchAction<CR>
+nnoremap <leader>pS :action GotoSymbol<CR>
+nnoremap <leader>pa :action GotoAction<CR>
+nnoremap <leader>pu :action GotoUrlAction<CR>
+
+let g:WhichKeyDesc_project = "<leader>p Project"
+let g:WhichKeyDesc_file    = "<leader>pf Find file"
+let g:WhichKeyDesc_string  = "<leader>ps Find string"
+let g:WhichKeyDesc_symbol  = "<leader>pS Find symbol"
+let g:WhichKeyDesc_action  = "<leader>pa Find action"
+let g:WhichKeyDesc_url     = "<leader>pu Find URL endpoint"
+
+
+
+"""""" Diagnostics """"""
+nnoremap <leader>ds :action ShowErrorDescription<CR>
+nnoremap <leader>dn :action GotoNextError<CR>
+nnoremap <leader>dp :action GotoPreviousError<CR>
+
+let g:WhichKeyDesc_diagnostic = "<leader>ds Diagnostics"
+let g:WhichKeyDesc_error_show = "<leader>ds Show current error"
+let g:WhichKeyDesc_error_next = "<leader>dn Show next error"
+let g:WhichKeyDesc_error_next = "<leader>dp Show previous error"
+
+
+
+"""""" LSP """"""
+nnoremap <leader>ld :action GotoDeclaration<CR>
+nnoremap <leader>la :action ShowIntentionActions<CR>
+nnoremap <leader>lr :action FindUsages<CR>
+nnoremap <leader>lR :action RenameElement<CR>
+
+let g:WhichKeyDesc_lsp            = "<leader>l LSP"
+let g:WhichKeyDesc_lsp_definition = "<leader>ld Show definition"
+let g:WhichKeyDesc_lsp_actions    = "<leader>la Show code actions"
+let g:WhichKeyDesc_lsp_reference  = "<leader>lr Show reference(s)"
+let g:WhichKeyDesc_lsp_rename     = "<leader>lR Rename symbol"
+
+
+
+"""""" Comment """"""
+vnoremap <leader>/ :action CommentByLineComment<CR><Esc>
+
+
+
+"""""" Surround """"""
+Plug 'tpope/vim-surround'
+
+" nnoremap <leader>sr cs
+" nnoremap <leader>sd ds
+" nnoremap <leader>sa ysiw
+"
+" vnoremap <leader>s S
